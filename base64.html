@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <meta name="author" content="devya.tech@ya.ru">
+    <meta property="og:title" content="Base64 Encoder – Devya">
+    <meta property="og:description" content="Online Base64 encoder/decoder tool for developers. Free and fast.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://devya.tech/base64.html">
+    <!--meta property="og:image" content="https://devya.tech/preview.png"-->
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Free Base64 encoder and decoder. Convert text to and from Base64 online. No ads, no tracking.">
+    <title>Base64 Encoder/Decoder – Devya</title>
+</head>
+<body>
+    <h1>Base64 Encoder / Decoder</h1>
+    <p>Quickly encode or decode text using Base64 format. Simple, fast and free.</p>
+
+    <textarea id="input" rows="6" cols="60" placeholder="Enter your text here..."></textarea>
+    <br />
+    <button onclick="encode()">Encode</button>
+    <button onclick="decode()">Decode</button>
+    <button onclick="clearInput()">Clear</button>
+    <br />
+    <h2>Result:</h2>
+    <textarea id="output" rows="6" cols="60" readonly></textarea>
+
+    <p><a href="/">← Back to Home</a></p>
+
+    <script>
+        function encode() {
+            const input = document.getElementById("input").value;
+            const output = btoa(unescape(encodeURIComponent(input)));
+            document.getElementById("output").value = output;
+        }
+
+        function decode() {
+            try {
+                const input = document.getElementById("input").value;
+                const output = decodeURIComponent(escape(atob(input)));
+                document.getElementById("output").value = output;
+            } catch (e) {
+                document.getElementById("output").value = "Invalid Base64 string.";
+            }
+        }
+
+        function clearInput() {
+            const input = document.getElementById("input").value = "";
+            const output = document.getElementById("output").value = "";
+        }
+    </script>
+</body>
+</html>
