@@ -1,0 +1,52 @@
+name: Deploy Preview
+on:
+  pull_request:
+    branches: [main]  # Активируется при PR в эту ветку
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install jinja2
+
+      - name: Create docs directory
+        run: mkdir -p docs
+
+      - name: Build site
+        run: python build.py
+
+      - name: Deploy to Preview
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          destination_dir: preview/${{ github.event.number }}  # Папка с номером PR
+          publish_branch: gh-pages
+
+      - name: Output preview URL
+        run: |
+          echo "Preview URL: https://${{ github.repository_owner }}.github.io/${{ github.repository }}/preview/${{ github.event.number }}/"
+
+  cleanup:
+    needs: build-and-deploy
+    if: github.event.action == 'closed'  # Важно: только при закрытии PR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: /dev/null
+          destination_dir: preview/${{ github.event.number }}
+          keep_files: false
