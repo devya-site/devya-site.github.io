@@ -30,8 +30,7 @@
 
     <div class="controls">
         <button onclick="generateUUID()">Generate UUID</button>
-        <button onclick="generateMultiple()">Generate 5 UUIDs</button>
-        <button onclick="copyToClipboard()">Copy to Clipboard</button>
+        <button onclick="copyToClipboard()">Copy</button>
         <button onclick="clearOutput()">Clear</button>
     </div>
 
@@ -48,16 +47,6 @@
             (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
         );
         document.getElementById("output").value = uuid;
-    }
-
-    function generateMultiple() {
-        let uuids = [];
-        for (let i = 0; i < 5; i++) {
-            uuids.push(([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-            ));
-        }
-        document.getElementById("output").value = uuids.join('\n');
     }
 
     function copyToClipboard() {
