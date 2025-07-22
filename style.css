@@ -64,3 +64,25 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.controls button {
+  margin-right: 0;
+}
+
+/* Для очень маленьких экранов можно сделать кнопки блочными */
+@media (max-width: 480px) {
+  .controls {
+    flex-direction: column;
+  }
+
+  .controls button {
+    width: 100%;
+  }
+}
