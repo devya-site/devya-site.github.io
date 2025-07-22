@@ -64,22 +64,3 @@ a {
 a:hover {
   text-decoration: underline;
 }
-
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0.5rem 0;
-}
-
-.controls button {
-  margin-right: 0;
-  flex: 1 0 auto; /* Позволяет кнопкам растягиваться, но не сжиматься ниже их содержимого */
-  min-width: max-content; /* Минимальная ширина по содержимому */
-}
-
-/* Для очень маленьких экранов делаем кнопки поменьше, но не на всю ширину */
-@media (max-width: 480px) {
-  .controls {
-    gap: 0.3rem;
-  }

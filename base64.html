@@ -33,6 +33,7 @@
     <br />
     <button onclick="encode()">Encode</button>
     <button onclick="decode()">Decode</button>
+    <button onclick="copyToClipboard()">Copy</button>
     <button onclick="clearInput()">Clear</button>
     <br />
     <h2>Result:</h2>
@@ -57,10 +58,19 @@
             }
         }
 
+        function copyToClipboard() {
+            const output = document.getElementById("output");
+            output.select();
+            document.execCommand("copy");
+        }
+
         function clearInput() {
             const input = document.getElementById("input").value = "";
             const output = document.getElementById("output").value = "";
         }
     </script>
+  <footer>
+    <p>&copy; 2025 Devya. Simple tools for smart people.</p>
+  </footer>
 </body>
 </html>

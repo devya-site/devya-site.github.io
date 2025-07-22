@@ -28,16 +28,13 @@
     <h1>UUID Generator</h1>
     <p>Generate random version 4 UUIDs (Universally Unique Identifier). Simple, fast and free.</p>
 
-    <div class="controls">
-        <button onclick="generateUUID()">Generate UUID</button>
-        <button onclick="copyToClipboard()">Copy</button>
-        <button onclick="clearOutput()">Clear</button>
-    </div>
-
-    <div class="result-container">
-        <h2>Result:</h2>
-        <textarea id="output" rows="6" cols="60" readonly></textarea>
-    </div>
+    <br />
+    <button onclick="generateUUID()">Generate UUID</button>
+    <button onclick="copyToClipboard()">Copy</button>
+    <button onclick="clearOutput()">Clear</button>
+    <br />
+    <h2>Result:</h2>
+    <textarea id="output" rows="6" cols="60" readonly></textarea>
 
     <p><a href="/">← Back to Home</a></p>
 
@@ -53,12 +50,14 @@
         const output = document.getElementById("output");
         output.select();
         document.execCommand("copy");
-        alert("Copied to clipboard!");
     }
 
     function clearOutput() {
         document.getElementById("output").value = "";
     }
 </script>
+  <footer>
+    <p>&copy; 2025 Devya. Simple tools for smart people.</p>
+  </footer>
 </body>
 </html>
