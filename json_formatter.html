@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ8LS0DP74"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-TQ8LS0DP74');
+        </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <meta name="author" content="devya.tech@ya.ru">
+    <meta property="og:title" content="JSON Formatter & Validator">
+    <meta name="description" content="Format and validate JSON quickly online. Free developer tool to pretty-print and check JSON syntax."/>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://devya.tech/json_formatter.html">
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JSON Formatter & Validator</title>
+</head>
+<body>
+  <h1>JSON Formatter & Validator</h1>
+  <p>Paste your JSON below to validate and format it with proper indentation. Errors will be shown if the input is invalid.</p>
+
+  <textarea id="input" rows="10" placeholder="Paste your JSON here..."></textarea>
+  <br />
+  <button onclick="formatJSON()">Format</button>
+  <button onclick="copyOutput()">Copy</button>
+  <button onclick="clearAll()">Clear</button>
+  <br />
+  <h2>Result:</h2>
+  <textarea id="output" rows="10" readonly placeholder="Formatted JSON will appear here..."></textarea>
+
+  <p><a href="/">← Back to Home</a></p>
+
+  <script>
+    function formatJSON() {
+      const input = document.getElementById("input").value;
+      const output = document.getElementById("output");
+      try {
+        const obj = JSON.parse(input);
+        const formatted = JSON.stringify(obj, null, 2);
+        output.value = formatted;
+      } catch (e) {
+        output.value = "❌ Invalid JSON:\n" + e.message;
+      }
+    }
+
+    function copyOutput() {
+      const output = document.getElementById("output");
+      output.select();
+      document.execCommand("copy");
+    }
+
+    function clearAll() {
+      document.getElementById("input").value = "";
+      document.getElementById("output").value = "";
+    }
+  </script>
+
+  <footer>
+    <p>&copy; 2025 Devya. Simple tools for smart people.</p>
+  </footer>
+</body>
+</html>
