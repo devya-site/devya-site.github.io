@@ -3,27 +3,27 @@
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ8LS0DP74"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-TQ8LS0DP74');
+    </script>
 
-            gtag('config', 'G-TQ8LS0DP74');
-        </script>
     <link rel="stylesheet" href="assets/style.css">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-    <link rel="canonical" href="https://devya.tech/base64.html" />
+    <link rel="canonical" href="https://devya.tech/pages/base64.html" />
 
-    <meta name="author" content="devya.tech@ya.ru">
     <meta property="og:title" content="Base64 Encoder – Devya">
     <meta property="og:description" content="Online Base64 encoder/decoder tool for developers. Free and fast.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://devya.tech/base64.html">
-    <!--meta property="og:image" content="https://devya.tech/preview.png"-->
+    <meta property="og:url" content="https://devya.tech/pages/base64.html">
 
     <meta charset="UTF-8" />
+    <meta name="author" content="devya.tech@ya.ru">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Free Base64 encoder and decoder. Convert text to and from Base64 online. No ads, no tracking.">
+
     <title>Base64 Encoder/Decoder – Devya</title>
 </head>
 <body>
@@ -35,7 +35,7 @@
     <button onclick="encode()">Encode</button>
     <button onclick="decode()">Decode</button>
     <button onclick="copyToClipboard()">Copy</button>
-    <button onclick="clearInput()">Clear</button>
+    <button onclick="clearAll()">Clear</button>
     <br />
     <h2>Result:</h2>
     <textarea id="output" rows="6" cols="60" readonly></textarea>
@@ -65,7 +65,7 @@
             document.execCommand("copy");
         }
 
-        function clearInput() {
+        function clearAll() {
             const input = document.getElementById("input").value = "";
             const output = document.getElementById("output").value = "";
         }

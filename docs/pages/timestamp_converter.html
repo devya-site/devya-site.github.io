@@ -9,70 +9,71 @@
         gtag('js', new Date());
         gtag('config', 'G-TQ8LS0DP74');
     </script>
+
     <link rel="stylesheet" href="assets/style.css">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-    <link rel="canonical" href="https://devya.tech/timestamp_converter.html" />
+    <link rel="canonical" href="https://devya.tech/pages/timestamp_converter.html" />
 
-    <meta name="author" content="devya.tech@ya.ru">
     <meta property="og:title" content="Timestamp Converter – Devya">
     <meta property="og:description" content="Convert timestamps to human-readable time and back. Free online tool for developers.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://devya.tech/timestamp_converter.html">
+    <meta property="og:url" content="https://devya.tech/pages/timestamp_converter.html">
 
     <meta charset="UTF-8" />
+    <meta name="author" content="devya.tech@ya.ru">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Free online timestamp ↔ human-readable time converter. Convert Unix time to readable format and back. Simple, fast, no tracking.">
+
     <title>Timestamp ↔ Human Time Converter – Devya</title>
 </head>
 <body>
     <h1>Timestamp ↔ Human Time Converter</h1>
     <p>Convert Unix timestamps to human-readable time and back. Useful for developers working with time formats.</p>
 
-    <label for="tsInput">Unix Timestamp:</label>
-    <textarea id="tsInput" rows="4" placeholder="Enter Unix timestamp (e.g. 1721846400)"></textarea>
+    <textarea id="input" rows="4" placeholder="Enter Unix timestamp (e.g. 1721846400)"></textarea>
     <br />
     <button onclick="timestampToHuman()">To Human Time</button>
     <button onclick="humanToTimestamp()">To Timestamp</button>
-    <button onclick="copyResult()">Copy</button>
-    <button onclick="clearFields()">Clear</button>
+    <button onclick="copyToClipboard()">Copy</button>
+    <button onclick="clearAll()">Clear</button>
 
     <h2>Result:</h2>
-    <textarea id="tsOutput" rows="4" readonly></textarea>
+    <textarea id="output" rows="4" readonly></textarea>
 
     <p><a href="/">← Back to Home</a></p>
 
     <script>
         function timestampToHuman() {
-            const input = document.getElementById("tsInput").value.trim();
+            const input = document.getElementById("input").value.trim();
             const ts = parseInt(input, 10);
             if (isNaN(ts)) {
-                document.getElementById("tsOutput").value = "Invalid timestamp.";
+                document.getElementById("output").value = "Invalid timestamp.";
                 return;
             }
             const date = new Date(ts * 1000);
-            document.getElementById("tsOutput").value = date.toISOString();
+            document.getElementById("output").value = date.toISOString();
         }
 
         function humanToTimestamp() {
-            const input = document.getElementById("tsInput").value.trim();
+            const input = document.getElementById("input").value.trim();
             const date = new Date(input);
             if (isNaN(date.getTime())) {
-                document.getElementById("tsOutput").value = "Invalid date format.";
+                document.getElementById("output").value = "Invalid date format.";
                 return;
             }
             const ts = Math.floor(date.getTime() / 1000);
-            document.getElementById("tsOutput").value = ts;
+            document.getElementById("output").value = ts;
         }
 
-        function copyResult() {
-            const output = document.getElementById("tsOutput");
+        function copyToClipboard() {
+            const output = document.getElementById("output");
             output.select();
             document.execCommand("copy");
         }
 
-        function clearFields() {
-            document.getElementById("tsInput").value = "";
-            document.getElementById("tsOutput").value = "";
+        function clearAll() {
+            document.getElementById("input").value = "";
+            document.getElementById("output").value = "";
         }
     </script>
     <!-- SEO Block -->
