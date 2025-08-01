@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ8LS0DP74"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TQ8LS0DP74');
+</script>
+    
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+<link rel="canonical" href="https://devya.tech/pages/jwt.html" />
+    
+<meta charset="UTF-8" />
+<meta name="author" content="devya.tech@ya.ru">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://devya.tech/pages/jwt.html">
+
+    <meta property="og:title" content="JWT Decoder">
+    <meta property="og:description" content="Paste a JWT token to decode its header and payload. This tool does not validate the signature.">
+    <meta name="description" content="Decode JWT tokens online. Inspect header and payload of any JSON Web Token safely and quickly.">
+
+    <title>JWT Decoder – Devya</title>
+</head>
+<body>
+    <h1>JWT Decoder</h1>
+    <p>Paste a JWT token to decode its header and payload. This tool does not validate the signature.</p>
+
+      <textarea id="input" rows="6" placeholder="Paste your JWT token here..."></textarea>
+  <br />
+  <button onclick="decodeJWT()">Decode</button>
+  <button onclick="clearJWT()">Clear</button>
+
+  <h2>Header:</h2>
+  <textarea id="header" rows="4" readonly></textarea>
+
+  <h2>Payload:</h2>
+  <textarea id="payload" rows="10" readonly></textarea>
+
+    <p><a href="/">← Back to Home</a></p>
+
+    <script>
+    function decodeJWT() {
+      const input = document.getElementById("input").value;
+      const parts = input.split(".");
+      if (parts.length !== 3) {
+        document.getElementById("header").value = "";
+        document.getElementById("payload").value = "Invalid JWT format.";
+        return;
+      }
+      try {
+        const header = JSON.parse(atob(parts[0]));
+        const payload = JSON.parse(atob(parts[1]));
+        document.getElementById("header").value = JSON.stringify(header, null, 2);
+        document.getElementById("payload").value = JSON.stringify(payload, null, 2);
+      } catch (e) {
+        document.getElementById("header").value = "";
+        document.getElementById("payload").value = "Error decoding token.";
+      }
+    }
+
+    function clearJWT() {
+      document.getElementById("input").value = "";
+      document.getElementById("header").value = "";
+      document.getElementById("payload").value = "";
+    }
+  </script>
+<!-- SEO Block: JWT Decoder -->
+<section>
+    <h2>How to Decode JWT Tokens Online</h2>
+    <p>
+        JWT (JSON Web Token) is a secure way to transmit data between parties as a self-contained JSON object. <br />
+        Our free tool lets you <strong>decode any JWT token</strong> to inspect its <strong>header</strong>, <strong>payload</strong>. <br />
+        <strong>100% client-side</strong> — your tokens never leave your browser, ensuring complete privacy.
+    </p>
+    <h3>Why decode JWTs?</h3>
+    <ul>
+        <li>🔍 <strong>Debug authentication issues</strong> in your web/mobile apps</li>
+        <li>🛡️ <strong>Verify token contents</strong> without trusting third parties</li>
+        <li>⏱️ <strong>Check expiration dates</strong> and custom claims</li>
+    </ul>
+</section>
+    
+<footer>
+    <p>&copy; 2025 Devya. Simple tools for smart people.</p>
+</footer>
+</body>
+</html>
