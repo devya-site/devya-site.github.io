@@ -31,15 +31,15 @@
     <p>Paste a JWT token to decode its header and payload. This tool does not validate the signature.</p>
 
       <textarea id="input" rows="6" placeholder="Paste your JWT token here..."></textarea>
-  <br />
-  <button onclick="decodeJWT()">Decode</button>
-  <button onclick="clearJWT()">Clear</button>
+    <div class="button-group">
+      <button onclick="decodeJWT()">Decode</button>
+      <button onclick="clearJWT()">Clear</button>
+    </div>
+    <h2>Header:</h2>
+    <textarea id="header" rows="4" readonly></textarea>
 
-  <h2>Header:</h2>
-  <textarea id="header" rows="4" readonly></textarea>
-
-  <h2>Payload:</h2>
-  <textarea id="payload" rows="10" readonly></textarea>
+    <h2>Payload:</h2>
+    <textarea id="payload" rows="10" readonly></textarea>
 
     <p><a href="/">← Back to Home</a></p>
 
@@ -68,7 +68,7 @@
       document.getElementById("header").value = "";
       document.getElementById("payload").value = "";
     }
-  </script>
+    </script>
 <!-- SEO Block: JWT Decoder -->
 <section>
     <h2>How to Decode JWT Tokens Online</h2>

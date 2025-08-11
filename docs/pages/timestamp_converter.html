@@ -32,12 +32,12 @@
     <p>Convert Unix timestamps to human-readable time and back. Useful for developers working with time formats.</p>
 
     <textarea id="input" rows="4" placeholder="Enter Unix timestamp (e.g. 1721846400)"></textarea>
-    <br />
-    <button onclick="timestampToHuman()">To Human Time</button>
-    <button onclick="humanToTimestamp()">To Timestamp</button>
-    <button onclick="copyToClipboard()">Copy</button>
-    <button onclick="clearAll()">Clear</button>
-
+    <div class="button-group">
+      <button onclick="timestampToHuman()">To Human Time</button>
+      <button onclick="humanToTimestamp()">To Timestamp</button>
+      <button onclick="copyToClipboard()">Copy</button>
+      <button onclick="clearAll()">Clear</button>
+    </div>
     <h2>Result:</h2>
     <textarea id="output" rows="4" readonly></textarea>
 
@@ -79,13 +79,72 @@
     </script>
     <!-- SEO Block -->
     <section>
-        <h2>Convert Unix Timestamps to Human-Readable Dates</h2>
-            <p>
-                A Unix timestamp is the number of seconds since January 1, 1970 (UTC). <br />
-                This tool converts Unix time to readable date formats and vice versa. <br />
-                Timestamps are useful for logging, scheduling, and time-based calculations. <br />
-                Try it now to see exact date and time values for any timestamp.
-            </p>
+    <h2>Common Time Formats</h2>
+    <table border="1" cellpadding="6" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Format</th>
+                <th>Example</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Unix Timestamp</td>
+                <td>1700000000</td>
+                <td>Number of seconds (or milliseconds) since January 1, 1970 UTC.</td>
+            </tr>
+            <tr>
+                <td>ISO 8601</td>
+                <td>2025-08-11T14:30:00Z</td>
+                <td>International standard for date and time, easy to parse across languages.</td>
+            </tr>
+            <tr>
+                <td>RFC 2822</td>
+                <td>Mon, 11 Aug 2025 14:30:00 +0000</td>
+                <td>Common format in email headers and older internet protocols.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>JavaScript Examples:</h2>
+    <pre><code>
+// Unix Timestamp → ISO 8601
+new Date(1700000000 * 1000).toISOString(); // "2023-11-14T06:13:20.000Z"
+
+// ISO 8601 → Unix Timestamp
+Math.floor(new Date("2025-08-11T14:30:00Z").getTime() / 1000); // 1754922600
+
+// RFC 2822 → Unix Timestamp
+Math.floor(new Date("Mon, 11 Aug 2025 14:30:00 +0000").getTime() / 1000); // 1754922600
+    </code></pre>
+
+    <h2>Python Examples:</h2>
+    <pre><code>
+from datetime import datetime
+
+
+# Unix Timestamp → ISO 8601
+datetime.utcfromtimestamp(1700000000).isoformat() + "Z"
+# '2023-11-14T06:13:20Z'
+
+# ISO 8601 → Unix Timestamp
+int(datetime.fromisoformat("2025-08-11T14:30:00").timestamp())
+# 1754922600
+
+# RFC 2822 → Unix Timestamp
+from email.utils import parsedate_to_datetime
+
+int(parsedate_to_datetime("Mon, 11 Aug 2025 14:30:00 +0000").timestamp())
+# 1754922600
+    </code></pre>
+
+    <h3>When to Use Each Format</h3>
+    <ul>
+        <li><strong>Unix Timestamp</strong> — great for quick storage and calculations.</li>
+        <li><strong>ISO 8601</strong> — best for APIs and modern applications.</li>
+        <li><strong>RFC 2822</strong> — still found in email headers and legacy systems.</li>
+    </ul>
     </section>
     
 <footer>

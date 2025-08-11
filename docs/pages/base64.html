@@ -32,12 +32,12 @@
     <p>Quickly encode or decode text using Base64 format. Simple, fast and free.</p>
 
     <textarea id="input" rows="6" cols="60" placeholder="Enter your text here..."></textarea>
-    <br />
-    <button onclick="encode()">Encode</button>
-    <button onclick="decode()">Decode</button>
-    <button onclick="copyToClipboard()">Copy</button>
-    <button onclick="clearAll()">Clear</button>
-    <br />
+    <div class="button-group">
+        <button onclick="encode()">Encode</button>
+        <button onclick="decode()">Decode</button>
+        <button onclick="copyToClipboard()">Copy</button>
+        <button onclick="clearAll()">Clear</button>
+    </div>
     <h2>Result:</h2>
     <textarea id="output" rows="6" cols="60" readonly></textarea>
 

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ8LS0DP74"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TQ8LS0DP74');
+</script>
+    
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+<link rel="canonical" href="https://devya.tech/pages/html_entities.html" />
+    
+<meta charset="UTF-8" />
+<meta name="author" content="devya.tech@ya.ru">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://devya.tech/pages/html_entities.html">
+
+    <meta property="og:title" content="HTML Entities Encoder/Decoder">
+    <meta property="og:description" content="Encode special characters into HTML entities (e.g. &lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;amp;&lt;/code&gt;) or
+        decode entities back to readable text. Useful for sanitizing strings for display in HTML and debugging encoded content.">
+    <meta name="description" content="Encode and decode HTML entities online. Convert &lt;, &gt;, &amp;, © and non-ASCII characters to safe HTML entities and back.">
+
+    <title>HTML Entities Encoder/Decoder – Devya</title>
+</head>
+<body>
+    <h1>HTML Entities Encoder/Decoder</h1>
+    <p>Encode special characters into HTML entities (e.g. &lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;amp;&lt;/code&gt;) or
+        decode entities back to readable text. Useful for sanitizing strings for display in HTML and debugging encoded content.</p>
+
+    <textarea id="input" rows="8" placeholder="Enter text with special characters or HTML entities here..."></textarea>
+    <div class="button-group">
+        <button onclick="encodeEntities()">Encode</button>
+        <button onclick="decodeEntities()">Decode</button>
+        <button onclick="copyOutput()">Copy</button>
+        <button onclick="clearIO()">Clear</button>
+    </div>
+    <h2>Result:</h2>
+    <textarea id="output" rows="8" readonly></textarea>
+
+    <p><a href="/">← Back to Home</a></p>
+
+    <script>
+      // Encode: create a text node and read parent.innerHTML to get entities
+      function encodeEntities() {
+        const input = document.getElementById('input').value;
+        try {
+          const wrapper = document.createElement('div');
+          // textContent ensures text is treated as literal text, innerHTML returns escaped entities
+          wrapper.textContent = input;
+          document.getElementById('output').value = wrapper.innerHTML;
+        } catch (e) {
+          document.getElementById('output').value = 'Error encoding input.';
+        }
+      }
+
+      // Decode: set innerHTML and read textContent to decode entities to characters
+      function decodeEntities() {
+        const input = document.getElementById('input').value;
+        try {
+          const wrapper = document.createElement('div');
+          wrapper.innerHTML = input;
+          document.getElementById('output').value = wrapper.textContent;
+        } catch (e) {
+          document.getElementById('output').value = 'Error decoding input.';
+        }
+      }
+
+      function copyOutput() {
+        const output = document.getElementById('output');
+        output.select();
+        try {
+          document.execCommand('copy');
+        } catch(e) {
+          // fallback: prompt with content
+          window.prompt("Copy to clipboard: Ctrl+C, Enter", output.value);
+        }
+      }
+
+      function clearIO() {
+        document.getElementById('input').value = '';
+        document.getElementById('output').value = '';
+      }
+    </script>
+
+    <!-- SEO Block: HTML Entities Encoder/Decoder -->
+    <section>
+      <h2>HTML Entities Encoder and Decoder Online Tool</h2>
+      <p>
+        HTML entities (like <code>&amp;lt;</code>, <code>&amp;gt;</code>, <code>&amp;amp;</code> and numeric entities such as <code>&amp;#169;</code>)
+          are used to represent characters that have special meaning in HTML or are outside the ASCII range.
+          Our free online tool helps you <strong>encode special characters to HTML entities</strong> to safely display text in web pages,
+          or <strong>decode entities</strong> back to their original form for editing and processing.
+      </p>
+
+      <h3>Why use HTML entity encoding?</h3>
+      <ul>
+        <li>⚠️ <strong>Prevent broken markup</strong> when user input contains HTML tags</li>
+        <li>🔒 <strong>Reduce XSS risks</strong> when displaying arbitrary text (useful as one step in output escaping)</li>
+        <li>🌍 <strong>Display non-ASCII characters</strong> reliably in legacy contexts using numeric entities</li>
+        <li>🔍 <strong>Debug encoded content</strong> coming from APIs, DB dumps, or pasted HTML</li>
+      </ul>
+
+      <h3>Common use cases</h3>
+      <ul>
+        <li>Escape user-provided text before inserting into HTML templates</li>
+        <li>Transform HTML-encoded content back to readable text for editing</li>
+        <li>Convert special characters (©, ®, ™, ©) to entities for compatibility</li>
+      </ul>
+    </section>
+
+    
+<footer>
+    <p>&copy; 2025 Devya. Simple tools for smart people.</p>
+</footer>
+</body>
+</html>

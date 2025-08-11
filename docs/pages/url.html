@@ -32,12 +32,12 @@
     <p>Quickly encode or decode URLs. Useful for working with query parameters, redirect strings, and web development in general.</p>
 
     <textarea id="input" rows="6" placeholder="Enter text or URL here..."></textarea>
-    <br />
-    <button onclick="encodeURL()">Encode</button>
-    <button onclick="decodeURL()">Decode</button>
-    <button onclick="copyOutput()">Copy</button>
-    <button onclick="clearFields()">Clear</button>
-    <br />
+    <div class="button-group">
+        <button onclick="encodeURL()">Encode</button>
+        <button onclick="decodeURL()">Decode</button>
+        <button onclick="copyOutput()">Copy</button>
+        <button onclick="clearFields()">Clear</button>
+    </div>
     <h2>Result:</h2>
     <textarea id="output" rows="6" readonly></textarea>
 

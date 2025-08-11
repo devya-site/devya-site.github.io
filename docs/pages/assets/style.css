@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   font-size: 18px; /* было бы хорошо хотя бы так */
-  max-width: 800px;
+  max-width: 1200px;
   margin: 2rem auto;
   padding: 0 1rem;
   line-height: 1.6;
@@ -43,6 +43,12 @@ button {
   cursor: pointer;
 }
 
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem; /* расстояние и по горизонтали, и по вертикали */
+}
+
 button:hover {
   background-color: #0056b3;
 }
@@ -63,4 +69,18 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+pre {
+  background-color: #f5f5f5; /* светлый фон */
+  border: 1px solid #ddd;    /* рамка */
+  border-radius: 4px;        /* скруглённые углы */
+  padding: 1rem;             /* отступы внутри блока */
+  overflow-x: auto;          /* горизонтальная прокрутка, если код длинный */
+  margin: 1rem 0;            /* отступ сверху и снизу */
+}
+
+code {
+  font-family: monospace;    /* моноширинный шрифт */
+  font-size: 0.95em;         /* чуть меньше текста страницы */
 }
