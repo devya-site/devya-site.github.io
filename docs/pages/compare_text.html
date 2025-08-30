@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ8LS0DP74"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TQ8LS0DP74');
+</script>
+    
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+<link rel="canonical" href="https://devya.tech/pages/compare_text.html" />
+    
+<meta charset="UTF-8" />
+<meta name="author" content="devya.tech@ya.ru">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://devya.tech/pages/compare_text.html">
+
+    <meta property="og:title" content="Text Compare Tool – Devya">
+    <meta property="og:description" content="Compare two texts and highlight differences at word level.">
+    <meta name="description" content="Free text comparison tool. Compare two texts and see highlighted word-level differences.">
+
+    <title>Text Compare Tool – Devya</title>
+
+    <style>
+        .compare-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-family: monospace;
+        }
+        .diff-result {
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            line-height: 1.5;
+            background: #fafafa;
+        }
+        .added { background-color: #d4fcd4; }
+        .removed { background-color: #ffd6d6; }
+    </style>
+</head>
+<body>
+    <p><a href="/">← Back to Home</a></p>
+    <h1>Text Compare Tool</h1>
+    <p>Compare two texts side by side and highlight word-level differences.</p>
+
+    <div class="compare-container">
+        <textarea id="textLeft" maxlength="3000" placeholder="Enter first text..."></textarea>
+        <textarea id="textRight" maxlength="3000" placeholder="Enter second text..."></textarea>
+    </div>
+
+    <div class="button-group">
+        <button onclick="compareTexts()">Compare</button>
+        <button onclick="clearTexts()">Clear</button>
+    </div>
+
+    <h2>Result:</h2>
+    <div id="diffOutput" class="diff-result"></div>
+
+    <script>
+        function compareTexts() {
+            const t1 = document.getElementById("textLeft").value.split("\n");
+            const t2 = document.getElementById("textRight").value.split("\n");
+
+            let result = "";
+            const maxLines = Math.max(t1.length, t2.length);
+
+            for (let i = 0; i < maxLines; i++) {
+                const line1 = t1[i] || "";
+                const line2 = t2[i] || "";
+
+                if (line1 === line2) {
+                    result += line1 + "\n"; // строка совпала
+                } else {
+                    result += diffWords(line1, line2) + "\n"; // сравниваем по словам
+                }
+            }
+
+            document.getElementById("diffOutput").innerHTML = result;
+
+        }
+        function escapeHtml(str) {
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+        }
+
+        function diffWords(a, b) {
+            const wordsA = escapeHtml(a).split(/\s+/);
+            const wordsB = escapeHtml(b).split(/\s+/);
+
+            let i = 0, j = 0, out = "";
+
+            while (i < wordsA.length && j < wordsB.length) {
+                if (wordsA[i] === wordsB[j]) {
+                    out += wordsA[i] + " ";
+                    i++; j++;
+                } else {
+                    out += `<span class="removed">${wordsA[i]}</span> `;
+                    out += `<span class="added">${wordsB[j]}</span> `;
+                    i++; j++;
+                }
+            }
+
+            while (i < wordsA.length) {
+                out += `<span class="removed">${wordsA[i++]}</span> `;
+            }
+            while (j < wordsB.length) {
+                out += `<span class="added">${wordsB[j++]}</span> `;
+            }
+
+            return out.trim();
+        }
+
+        function clearTexts() {
+            document.getElementById("textLeft").value = "";
+            document.getElementById("textRight").value = "";
+            document.getElementById("diffOutput").innerHTML = "";
+        }
+    </script>
+    <!-- SEO / description block (если нужен) -->
+    <section>
+        <h2>What is Text Compare Tool?</h2>
+        <p>
+            This online text compare tool highlights differences between two texts
+            line by line and word by word. Useful for proofreading, code reviews,
+            or tracking changes in documents.
+        </p>
+    </section>
+
+    
+<footer>
+    <p>&copy; 2025 Devya. Simple tools for smart people.</p>
+</footer>
+</body>
+</html>
